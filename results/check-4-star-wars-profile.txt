@@ -1,0 +1,14 @@
+watched: [('Star Wars (1977)', ['Action', 'Adventure', 'Romance', 'Sci-Fi', 'War']), ('Return of the Jedi (1983)', ['Action', 'Adventure', 'Romance', 'Sci-Fi', 'War']), ('Empire Strikes Back, The (1980)', ['Action', 'Adventure', 'Drama', 'Romance', 'Sci-Fi', 'War'])]
+profile: {'Action': 1.0, 'Adventure': 1.0, 'Drama': 0.33, 'Romance': 1.0, 'Sci-Fi': 1.0, 'War': 1.0}
+
+Top-5 by cosine:
+   0.885  id=271   pop=211  |x|=4  Starship Troopers (1997)
+   0.885  id=498   pop=152  |x|=4  African Queen, The (1951)
+   0.766  id=62    pop=127  |x|=3  Stargate (1994)
+   0.766  id=82    pop=261  |x|=3  Jurassic Park (1993)
+   0.766  id=121   pop=429  |x|=3  Independence Day (ID4) (1996)
+
+1. overlap check: Top-5 ∩ watched = ∅  -> PASS
+2. distribution check: rating counts [211, 152, 127, 261, 429] (catalog median 27); all above median -> mainstream-only, note as limitation
+3. formula check: dot-product Top-5 differs from cosine in 2 item(s): ['Crying Game, The (1992)', 'First Knight (1995)'] (dot favours |x| = [4, 4, 4, 4, 3])
+4. collapse check: cos(watched, profile) = [('Star Wars (1977)', 0.989), ('Return of the Jedi (1983)', 0.989), ('Empire Strikes Back, The (1980)', 0.963)]; best catalog match 0.885

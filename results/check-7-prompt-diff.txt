@@ -1,0 +1,53 @@
+diff --git a/prompt.md b/prompt_fixed.md
+index 3b037d0..ac779f6 100644
+--- a/prompt.md
++++ b/prompt_fixed.md
+@@ -46,13 +46,13 @@ This file is responsible only for fetching and parsing the data from local files
+     -   This must be an `async` function.
+     -   It will use the `fetch()` API to read `u.item` and `u.data`. Assume these files are in the same directory as `index.html`.
+     -   Implement `try...catch` error handling to manage potential file loading failures. If a file fails to load, display an error message in the `#result` paragraph.
+-    -   Inside the `try` block, first `await` the fetch call for `u.item`, convert the response to text, and pass it to the `parseItemData` function.
+-    -   Then, `await` the fetch call for `u.data`, convert it to text, and pass it to the `parseRatingData` function.
++    -   Inside the `try` block, first `await` the fetch call for `u.item`, read the response with `await response.arrayBuffer()`, decode it as Latin-1 with `new TextDecoder('latin1')`, and pass the decoded text to the `parseItemData` function.
++    -   Then, `await` the fetch call for `u.data`, convert the response to text, and pass it to the `parseRatingData` function.
+     -   The function should implicitly return a `Promise` that resolves when the asynchronous operations are complete.
+ 
+ 3.  **Parsing Function: `parseItemData(text)`**
+     -   This function takes the raw text from `u.item` as input.
+-    -   It should define an array of the 18 genre names (from "Action" to "Western").
++    -   It should define an array of 19 genre names, the first being `"unknown"`, matching the 19 flag fields.
+     -   It will split the input text into individual lines. For each line, it will:
+         -   Split the line by the `|` delimiter.
+         -   Extract the movie `id` (field 0) and `title` (field 1).
+@@ -83,11 +83,28 @@ This file handles the user interface and the recommendation logic. It will depen
+     -   This is the main function for content-based filtering, triggered by the button click. It must perform the following steps in order:
+         -   **Step 1 (Get User Input):** Get the `value` of the currently selected option from the `#movie-select` dropdown. This value is the movie ID as a string. Convert it to an integer.
+         -   **Step 2 (Find Liked Movie):** Search the global `movies` array to find the movie object whose `id` matches the selected movie ID. Store this in a `likedMovie` variable. If no movie is found, display an error and exit.
+-        -   **Step 3 (Prepare for Similarity):** Create a JavaScript `Set` from the `genres` array of the `likedMovie`. Create a `candidateMovies` array by filtering the global `movies` array to exclude the `likedMovie`.
+-        -   **Step 4 (Calculate Scores):** Create a `scoredMovies` array by mapping over the `candidateMovies`. For each `candidateMovie`, calculate the **Jaccard Similarity Index** between its genre set and the `likedMovie`'s genre set. The formula is `(Size of Intersection) / (Size of Union)`. The resulting objects in the new array should be in the format `{...candidate, score: jaccardScore}`.
++        -   **Step 3 (Prepare for Similarity):** Create a JavaScript `Set` from the `genres` array of the `likedMovie`. Create a `candidateMovies` array by filtering the global `movies` array to exclude any movie whose `id` matches the liked movie's ID or whose `title` matches the liked movie's title.
++        -   **Step 4 (Calculate Scores):** Create a `scoredMovies` array by mapping over the `candidateMovies`. For each `candidateMovie`, calculate the **Cosine Similarity** between its genre set and the `likedMovie`'s genre set. The formula is `(Size of Intersection) / (sqrt(Size of Liked Genre Set) * sqrt(Size of Candidate Genre Set))`. The resulting objects in the new array should be in the format `{...candidate, score: cosineScore}`.
+         -   **Step 5 (Sort by Score):** Sort the `scoredMovies` array in descending order based on the `score`.
+-        -   **Step 6 (Select Top Recommendations):** Take the first two movies from the sorted array using `.slice(0, 2)`.
++        -   **Step 6 (Select Top Recommendations):** Take the first five movies from the sorted array using `.slice(0, 5)`.
+         -   **Step 7 (Display Result):** Construct a user-friendly output string (e.g., "Because you liked '[Liked Movie Title]', we recommend: [Movie 1 Title], [Movie 2 Title]") and set it as the `innerText` of the `#result` paragraph.
+ 
++4.  **Profile-based recommendations:**
++    -   Add three `<select>` elements with IDs `watched-1`, `watched-2`, and `watched-3`, populated with the same movie options as `#movie-select`, and add a button labeled "Recommend from profile" that calls `getProfileRecommendations()`.
++    -   In `getProfileRecommendations()`, find the three selected movies and build their mean genre vector by averaging the 19-element binary genre vectors position by position.
++    -   Score every catalog movie by cosine similarity to the mean profile vector using the same cosine formula as above.
++    -   Exclude all three watched movies by both their IDs and their titles.
++    -   Sort by descending score, select the Top-5 with `.slice(0, 5)`, and display each recommendation with its score formatted to three decimal places.
++
++#### **6. Verification before output**
++
++Before writing the UI code, print the first parsed movie together with its parsed genres. Also verify that `Star Wars (1977)` has exactly these genres:
++
++```text
++Action, Adventure, Romance, Sci-Fi, War
++```
++
++The verification should assert that the parsed genre set for `Star Wars (1977)` is exactly `{ "Action", "Adventure", "Romance", "Sci-Fi", "War" }` before producing the UI code.
++
+ ---
+ Please now generate the complete code for the `index.html`, `style.css`, `data.js`, and `script.js` files based on these final, detailed specifications.

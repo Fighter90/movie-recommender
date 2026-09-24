@@ -1,0 +1,21 @@
+dropdown: 1683 options; titles with U+FFFD (mojibake): 0 e.g. []
+
+Unforgiven (1992)
+  page: Because you liked "Unforgiven (1992)", we recommend: Tombstone (1993), Wild Bill (1995), Wyatt Earp (1994), Wild Bunch, The (1969), Davy Crockett, King of the Wild Frontier (1955)
+  reference (cosine, top-5): ['Tombstone (1993)', 'Wild Bill (1995)', 'Wyatt Earp (1994)', 'Wild Bunch, The (1969)', 'Davy Crockett, King of the Wild Frontier (1955)']
+  match: YES  | repeats liked title: False  | duplicate titles in list: False
+
+Star Wars (1977)
+  page: Because you liked "Star Wars (1977)", we recommend: Return of the Jedi (1983), Empire Strikes Back, The (1980), Starship Troopers (1997), African Queen, The (1951), Stargate (1994)
+  reference (cosine, top-5): ['Return of the Jedi (1983)', 'Empire Strikes Back, The (1980)', 'Starship Troopers (1997)', 'African Queen, The (1951)', 'Stargate (1994)']
+  match: YES  | repeats liked title: False  | duplicate titles in list: False
+
+Chasing Amy (1997)
+  page: Because you liked "Chasing Amy (1997)", we recommend: Postino, Il (1994), Angels and Insects (1995), Mad Love (1995), Phenomenon (1996), Breakfast at Tiffany's (1961)
+  reference (cosine, top-5): ['Postino, Il (1994)', 'Angels and Insects (1995)', 'Mad Love (1995)', 'Phenomenon (1996)', "Breakfast at Tiffany's (1961)"]
+  match: YES  | repeats liked title: False  | duplicate titles in list: False
+
+Misérables, Les (1995)
+  page: Because you liked "Misérables, Les (1995)", we recommend: Evita (1996), Farinelli: il castrato (1994), Umbrellas of Cherbourg, The (Parapluies de Cherbourg, Les) (1964), Doors, The (1991), Backbeat (1993)
+  reference (cosine, top-5): ['Evita (1996)', 'Farinelli: il castrato (1994)', 'Umbrellas of Cherbourg, The (Parapluies de Cherbourg, Les) (1964)', 'Doors, The (1991)', 'Backbeat (1993)']
+  match: YES  | repeats liked title: False  | duplicate titles in list: False

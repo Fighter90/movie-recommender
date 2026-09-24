@@ -1,0 +1,14 @@
+watched: [('Toy Story (1995)', ['Animation', "Children's", 'Comedy']), ('Scream (1996)', ['Horror', 'Thriller']), ('Sense and Sensibility (1995)', ['Drama', 'Romance'])]
+profile: {'Animation': 0.33, "Children's": 0.33, 'Comedy': 0.33, 'Drama': 0.33, 'Horror': 0.33, 'Romance': 0.33, 'Thriller': 0.33}
+
+Top-5 by cosine:
+   0.756  id=1219  pop=20   |x|=4  Goofy Movie, A (1995)
+   0.655  id=8     pop=219  |x|=3  Babe (1995)
+   0.655  id=90    pop=95   |x|=3  So I Married an Axe Murderer (1993)
+   0.655  id=170   pop=121  |x|=3  Cinema Paradiso (1988)
+   0.655  id=185   pop=239  |x|=3  Psycho (1960)
+
+1. overlap check: Top-5 ∩ watched = ∅  -> PASS
+2. distribution check: rating counts [20, 219, 95, 121, 239] (catalog median 27); mixed popularity
+3. formula check: dot-product Top-5 differs from cosine in 2 item(s): ['From Dusk Till Dawn (1996)', 'Professional, The (1994)'] (dot favours |x| = [4, 3, 5, 4, 3])
+4. collapse check: cos(watched, profile) = [('Toy Story (1995)', 0.655), ('Scream (1996)', 0.535), ('Sense and Sensibility (1995)', 0.535)]; best catalog match 0.756  -> profile scores lower than every input: taste washed out

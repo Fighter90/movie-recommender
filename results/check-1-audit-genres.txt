@@ -1,0 +1,5 @@
+u.item: 1682 movies, fields per line: {24: 1682}, encoding: NOT utf-8 (first bad byte at offset 76620: b'|0|0\n543|Mis\xe9rables,'); decoding as latin-1
+movies whose genre labels differ between MovieLens layout and the starter's parse: 1682/1682
+Western: 27 movies in the data, 71 labelled 'Western' by the starter (those are actually War)
+'unknown'-only movies: ['unknown', 'Good Morning (1971)'] -> starter labels them [['Action'], ['Action']]
+duplicate titles (same title, different id): 18 e.g. ['Chasing Amy (1997)', 'Kull the Conqueror (1997)', "Ulee's Gold (1997)", 'Fly Away Home (1996)', 'Ice Storm, The (1997)']

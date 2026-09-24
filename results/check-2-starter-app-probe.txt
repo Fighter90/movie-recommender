@@ -1,0 +1,6 @@
+dropdown: 1683 options; titles with U+FFFD (mojibake): 9 e.g. ["C'est arriv� pr�s de chez vous (1992)", 'Contempt (M�pris, Le) (1963)', 'C�r�monie, La (1995)']
+
+Unforgiven (1992)
+  page: Because you liked "Unforgiven (1992)", we recommend: Toy Story (1995), GoldenEye (1995)
+  reference (jaccard, top-2): ['Tombstone (1993)', 'Wild Bill (1995)']
+  match: NO  | repeats liked title: False  | duplicate titles in list: False
